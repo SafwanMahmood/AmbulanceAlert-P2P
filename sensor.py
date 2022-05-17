@@ -19,7 +19,6 @@ channel = connection.channel()
 channel.exchange_declare(exchange='logs', exchange_type='fanout')
 
 IS_AMBULANCE = True
-TYPE = "ambulance"
 
 # using datetime module
 import datetime;
@@ -30,10 +29,14 @@ for i in range(len(lat)):
     data["id"] = 0
     ct = str(datetime.datetime.now())
     data["timestamp"] = ct
-    data["type"] = TYPE
+
     if IS_AMBULANCE:
+        data["type"] = "AMBULANCE"
         data["start"] = str(lat[0])+"," + str(long[1])
         data["destination"] = str(lat[-1])+"," + str(long[-1])
+    else:
+        data["type"] = "CAR"
+
     data["current_location"] = str(lat[i])+"," + str(long[i])
     data["pulse"] = i
     data["flag"] = "none"
