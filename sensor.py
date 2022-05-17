@@ -19,31 +19,34 @@ channel = connection.channel()
 channel.exchange_declare(exchange='logs', exchange_type='fanout')
 
 IS_AMBULANCE = True
+TYPE = "ambulance"
 
-
-data = {}
-data['id'] = 0
-
-
-json_data = json.dumps(data)
-
-
-if IS_AMBULANCE:
-    m_list = []
-    for i in range(len(lat)):
-        message = str(lat[i]) + "," + str(long[i])
-        m_list.append(message)
-
-    "#".join(m_list)    
-        
-
-
-
+# using datetime module
+import datetime;
+  
+##info
 for i in range(len(lat)):
-    message = str(lat[i]) + "," + str(long[i])
+    data = {}
+    data["id"] = 0
+    ct = str(datetime.datetime.now())
+    data["timestamp"] = ct
+    data["type"] = TYPE
+    if IS_AMBULANCE:
+        data["start"] = str(lat[0])+"," + str(long[1])
+        data["destination"] = str(lat[-1])+"," + str(long[-1])
+    data["current_location"] = str(lat[i])+"," + str(long[i])
+    data["pulse"] = i
+    data["flag"] = "none"
+    if i == 0:
+        data["flag"] = "true"
+    elif i == len(lat)-1:
+        data["flag"] = "false"     
+
+    json_data = json.dumps(data)
+    message = json_data
     channel.basic_publish(exchange='logs', routing_key='', body=message)
     time.sleep(1)
-    print("[x] Sent %r" % message)
+    print(message)
 
 connection.close()
 
