@@ -1,6 +1,6 @@
 import pika
 
-connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+connection = pika.BlockingConnection(pika.ConnectionParameters(host='54.196.255.213'))
 channel = connection.channel()
 
 channel.exchange_declare(exchange='logs', exchange_type='fanout')
