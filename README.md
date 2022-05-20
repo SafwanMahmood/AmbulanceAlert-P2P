@@ -1,4 +1,4 @@
-# PeerBase
+# PeerBase P2P network
 Go through the Report.md to get the gist/documentation. 
 ## Reference:
 
