@@ -1,5 +1,5 @@
 # PeerBase
-
+Go through to understand the Report.md gist/documentation. 
 ## Reference:
 
 For a **tutorial** see: http://cs.berry.edu/~nhamid/p2p
@@ -29,4 +29,12 @@ In general,
 ```
 filergui.py <server-port> <max-peers> <peer-ip>:<port>
 ```
+Senors run by running:
 
+Docker rabbitmq:
+
+docker run --rm -it --hostname my-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+
+Then:
+
+python sensorambulance.py 
