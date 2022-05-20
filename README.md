@@ -1,5 +1,5 @@
 # PeerBase
-Go through to understand the Report.md gist/documentation. 
+Go through the Report.md to get the gist/documentation. 
 ## Reference:
 
 For a **tutorial** see: http://cs.berry.edu/~nhamid/p2p
